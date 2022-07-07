@@ -1,0 +1,39 @@
+class BufferModel{
+     constructor(_symbol:string,_price:number,
+     	_quantity:number,_side:enumModel.side,
+     	_type:enumModel.type){
+     	this.symbol = _symbol;
+     	this.price = _price;
+     	this.quantity = _quantity;
+     	this.side = _side;
+     	this.type = _type;
+     }
+     side:enumModel.side;
+     type:enumModel.type;
+     symbol:string;
+     quantity:number;
+     price:number;
+
+     getDataFromBuffer = function(buffer:Buffer){
+     	var arr:any[]=[];
+     	for(var i=0;i<buffer.length;i++){
+     		arr.push(buffer[i]);
+     	}
+     	return arr;
+     }
+
+     getEncodedObject():any[]{
+     	var data:any[] = [];
+     	data = this.getDataFromBuffer(Buffer.from(this.symbol));
+     	data = data.concat("¬");
+     	data = data.concat(this.getDataFromBuffer(Buffer.from(String(this.price))));
+     	data = data.concat("¬");
+     	data = data.concat(this.getDataFromBuffer(Buffer.from(String(this.quantity))));
+     	data = data.concat("¬");
+     	data = data.concat(this.getDataFromBuffer(Buffer.from(this.side)));
+     	data = data.concat("¬");
+     	data = data.concat(this.getDataFromBuffer(Buffer.from(this.type)));
+     	data = data.concat("¬");
+     	return data;
+     }
+}
