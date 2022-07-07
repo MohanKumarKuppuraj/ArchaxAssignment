@@ -21,7 +21,7 @@ class Answer extends React.Component<any,any>{
 
 	render():any{
 		return(
-			<pre>
+			<pre style={{"whiteSpace": "break-spaces"}}>
 				{this.state.answerText}
 			</pre>
 		);	

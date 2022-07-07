@@ -1,0 +1,2 @@
+We can use npm link. Its a two step process. First go to the local package and give "npm link".
+second step is to go the root directory where package.json is present and "npm link local-package" which will create a symbolic link from globally package-name to node_modules/ of the current folder.
